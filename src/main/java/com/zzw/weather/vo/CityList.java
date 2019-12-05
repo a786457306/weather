@@ -24,4 +24,5 @@ public class CityList {
 
     @XmlElement(name = "d")
     private List<City> cityList;
+
 }

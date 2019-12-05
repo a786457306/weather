@@ -93,4 +93,35 @@ public class WeatherDataServiceImpl implements WeatherDataService {
         }
         return weatherResponse;
     }
+
+    /**
+     * 根据cityId缓存数据
+     *
+     * @param cityId
+     */
+    @Override
+    public void syncDataByCityId(String cityId) {
+        String uri = WEATHER_URI + "citykey=" + cityId;
+        this.saveWeatherDataToRedis(uri);
+    }
+
+    /**
+     * 把天气信息缓存到redis
+     *
+     * @param uri
+     */
+    private void saveWeatherDataToRedis(String uri) {
+        String key = uri;
+        String result = "";
+        ValueOperations<String, String> valueOperation = redisTemplate.opsForValue();
+
+        // 不管缓存中有没有都要写入
+        ResponseEntity<String> response = restTemplate.getForEntity(uri, String.class);
+        if (response.getStatusCodeValue() == 200) {
+            result = response.getBody();
+        }
+        // 数据写入缓存，超时时间为30分钟
+        valueOperation.set(key, result, 1800, TimeUnit.SECONDS);
+        logger.info("Redis doesn't have data, the result is " + result);
+    }
 }

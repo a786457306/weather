@@ -13,6 +13,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class QuartzConfiguration {
 
+    // 定时器刷新时间
+    private static final Integer TIME = 1800;
+
     /**
      * Job的实现细节
      * JobDetail是Job实例，是对象，包含实例的执行计划和所需要的数据
@@ -38,7 +41,8 @@ public class QuartzConfiguration {
     public Trigger weatherDataSyncTrigger() {
         // 调度器，每小时执行一次
         SimpleScheduleBuilder scheduleBuilder = SimpleScheduleBuilder.simpleSchedule()
-                .repeatHourlyForever();
+                .withIntervalInSeconds(TIME)
+                .repeatForever();
 
         // 新建触发器
         return TriggerBuilder.newTrigger()
