@@ -1,9 +1,7 @@
 package com.zzw.weather.controller;
 
 import com.zzw.weather.service.CityDataService;
-import com.zzw.weather.service.WeatherDataService;
 import com.zzw.weather.service.WeatherReportService;
-import com.zzw.weather.vo.WeatherResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
