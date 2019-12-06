@@ -1,6 +1,8 @@
 package com.zzw.weather.service;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.zzw.weather.vo.Weather;
 import com.zzw.weather.vo.WeatherResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -68,7 +70,7 @@ public class WeatherDataServiceImpl implements WeatherDataService {
         String key = uri;
         String result = "";
 
-        WeatherResponse weatherResponse = null;
+        WeatherResponse weatherResponse = new WeatherResponse();
         ValueOperations<String, String> valueOperation = redisTemplate.opsForValue();
 
         // 先查缓存，缓存中有直接取
@@ -87,12 +89,16 @@ public class WeatherDataServiceImpl implements WeatherDataService {
             logger.info("Redis doesn't have data, the result is " + result);
         }
         try {
-            weatherResponse = JSONObject.parseObject(result, WeatherResponse.class);
+            JSONObject jsonObject = JSONObject.parseObject(result);
+            result = jsonObject.getString("data");
+            Weather weather = JSON.parseObject(result, Weather.class);
+            weatherResponse.setData(weather);
         } catch (Exception e) {
             logger.error("Error!!!", e);
         }
         return weatherResponse;
     }
+
 
     /**
      * 根据cityId缓存数据
@@ -122,6 +128,6 @@ public class WeatherDataServiceImpl implements WeatherDataService {
         }
         // 数据写入缓存，超时时间为30分钟
         valueOperation.set(key, result, 1800, TimeUnit.SECONDS);
-        logger.info("Redis doesn't have data, the result is " + result);
+        logger.info("save data to redis, the result is " + result);
     }
 }

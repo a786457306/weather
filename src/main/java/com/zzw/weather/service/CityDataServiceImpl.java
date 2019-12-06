@@ -24,7 +24,7 @@ public class CityDataServiceImpl implements CityDataService {
         // 读取xml文件
         // 通过文件名寻找xml文件
         Resource resource = new ClassPathResource("citylist.xml");
-        BufferedReader reader = new BufferedReader(new InputStreamReader(resource.getInputStream()));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(resource.getInputStream(),"utf-8"));
         StringBuffer buffer = new StringBuffer();
         String line = "";
 
@@ -36,7 +36,7 @@ public class CityDataServiceImpl implements CityDataService {
         reader.close();
 
         // xml文件解析成java对象
-        CityList cityList = (CityList) XmlBuilder.xmlToObject(City.class, buffer.toString());
+        CityList cityList = (CityList) XmlBuilder.xmlToObject(CityList.class, buffer.toString());
         return cityList.getCityList();
     }
 }

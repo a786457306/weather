@@ -2,6 +2,7 @@ package com.zzw.weather.vo;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.List;
 
@@ -12,19 +13,14 @@ import java.util.List;
 
 @Getter
 @Setter
+@ToString
 public class Weather {
 
     private static final long serialVersionUID = 1L;
 
     private String city;
-
-    private String aqi;
-
-    // 感冒
-    private String catchCold;
-
-    // 温度
-    private String temperature;
+    private String ganmao;
+    private String wendu;
     private Yesterday yesterday;
     private List<Forecast> forecast;
 }

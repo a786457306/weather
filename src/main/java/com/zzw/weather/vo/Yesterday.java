@@ -17,9 +17,9 @@ import java.io.Serializable;
 public class Yesterday implements Serializable {
     private static final long serialVersionUID = 1L;
     private String date;
-    private String highTemperature;
-    private String windDirection;
-    private String lowTemperature;
-    private String windPower;
+    private String high;
+    private String fx;
+    private String low;
+    private String fl;
     private String type;
 }
