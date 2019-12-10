@@ -9,6 +9,7 @@
 		<module>weather-report-server</module>
 		<module>weather-city-server</module>
 		<module>micro-weather-eureka-server</module>
+		<module>micro-weather-eureka-client</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
