@@ -30,7 +30,7 @@ public class WeatherReportController {
                                                  Model model) throws Exception {
         // TODO:由城市数据微服务来提供城市数据
         List<City> cityList = null;
-        cityList = new ArrayList<>();
+        cityList = new ArrayList<City>();
         City city = new City();
         city.setCityId("101280601");
         city.setCityName("深圳");
