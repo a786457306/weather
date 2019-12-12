@@ -9,6 +9,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @date 2019/12/10 20:49
  */
 @SpringBootApplication
+// 启用一个能被自动发现的客户端
 @EnableDiscoveryClient
 public class EurekaClientApplication {
     public static void main(String[] args) {
