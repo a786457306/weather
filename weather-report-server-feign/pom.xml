@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>weather-report-server</artifactId>
+    <artifactId>weather-report-server-feign</artifactId>
 
     <dependencies>
         <!-- spring-boot-starter-thymeleaf -->
