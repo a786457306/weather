@@ -10,6 +10,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- 城市数据微服务，提供城市列表内容的读取 -->
     <artifactId>weather-city-server</artifactId>
 
     <dependencies>

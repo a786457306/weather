@@ -4,9 +4,14 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 
 // 指明要访问的服务地址，某服务的某接口
-@FeignClient("weather-city-server")
+@FeignClient("weather-city")
 public interface CityClient {
 
-    @GetMapping("/cities")
+    /**
+     * 到指定接口地址下获取城市列表
+     *
+     * @return
+     */
+    @GetMapping("/cities/listcity")
     String listCities();
 }

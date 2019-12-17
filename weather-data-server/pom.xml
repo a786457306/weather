@@ -9,8 +9,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <!--
+        天气数据微服务，根据城市Id从redis中读取天气数据，
+        获取不到的话再远程调用天气数据url，在线获取并存入redis
+     -->
     <artifactId>weather-data-server-feign</artifactId>
-    <!-- 从redis中查询数据 -->
 
     <dependencies>
         <!-- redis -->

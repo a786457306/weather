@@ -2,6 +2,7 @@ package com.zzw.weather_collection.job;
 
 import com.zzw.weather_collection.service.WeatherDataCollectionService;
 import com.zzw.weather_collection.vo.City;
+import com.zzw.weather_collection.service.CityClient;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.slf4j.Logger;
@@ -9,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,6 +25,9 @@ public class WeatherDataSyncJob extends QuartzJobBean {
     @Autowired
     private WeatherDataCollectionService weatherDataService;
 
+    @Autowired
+    private CityClient cityClient;
+
     /**
      * 定时器执行逻辑
      *
@@ -35,14 +38,11 @@ public class WeatherDataSyncJob extends QuartzJobBean {
     protected void executeInternal(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         logger.info("Weather Data Sync Job Start!");
 
-        // 获取城市ID列表
+        // 获取城市ID列表，城市API服务
         List<City> cityList = null;
         try {
-            // TODO:在远程服务调用过程中获取城市列表
-            cityList = new ArrayList<>();
-            City city = new City();
-            city.setCityId("101280601");
-            cityList.add(city);
+            // 在远程服务调用过程中获取城市列表
+            cityList = cityClient.listCity();
         } catch (Exception e) {
             logger.error("Exception!", e);
         }

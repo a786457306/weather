@@ -9,8 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- 数据采集微服务，远程获取城市数据，定时根据城市Id获取天气数据，并存入redis -->
     <artifactId>weather-collection-server-feign</artifactId>
-    <!-- 数据收集，并存入redis -->
 
     <dependencies>
         <!-- redis -->

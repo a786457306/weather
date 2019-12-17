@@ -9,6 +9,14 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <!--
+        天气预报微服务，前端页面
+        根据city城市数据微服务获取城市数据
+        根据data天气数据微服务获取天气数据
+        并集成到前端页面上
+
+        现改造为通过网关代理实现远端服务的调用，不再依赖以上两个微服务，只依赖网关
+     -->
     <artifactId>weather-report-server-feign</artifactId>
 
     <dependencies>
@@ -22,6 +30,11 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -30,7 +43,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.zzw.weather_report.ReportApplication</mainClass>
+                    <mainClass>com.zzw.weather_report_feign.ReportApplication</mainClass>
                     <layout>JAR</layout>
                 </configuration>
                 <executions>

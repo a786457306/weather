@@ -9,6 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- feign客户端实例，启用feign客户端，实现对另一个微服务接口的远程调用 -->
     <artifactId>micro-weather-eureka-client-feign</artifactId>
 
     <dependencies>
